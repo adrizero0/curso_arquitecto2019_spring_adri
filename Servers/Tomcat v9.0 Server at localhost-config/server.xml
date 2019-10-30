@@ -38,6 +38,7 @@
     -->
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/librosds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/libros" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/agenda2ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/agenda2" username="root"/>
+    <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/bancads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/bancabd" username="root"/>
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
   </GlobalNamingResources>
 
@@ -151,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="03_libreria_spring_adri" path="/03_libreria_spring_adri" reloadable="true" source="org.eclipse.jst.jee.server:03_libreria_spring_adri"/><Context docBase="04_contactos_spring_dao_adri" path="/04_contactos_spring_dao_adri" reloadable="true" source="org.eclipse.jst.jee.server:04_contactos_spring_dao_adri"/><Context docBase="05_libreria_spring_dao_adri" path="/05_libreria_spring_dao_adri" reloadable="true" source="org.eclipse.jst.jee.server:05_libreria_spring_dao_adri"/></Host>
+      </Host>
     </Engine>
   </Service>
 </Server>

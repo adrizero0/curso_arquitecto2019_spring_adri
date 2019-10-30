@@ -1,35 +1,18 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
 
 /**
  * The persistent class for the clientes database table.
  * 
  */
-@Entity
-@Table(name="clientes")
-@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
+
 public class Cliente implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
 	private int dni;
-
 	private String direccion;
-
 	private String nombre;
-
 	private int telefono;
-
-	//bi-directional many-to-many association to Cuenta
-	@ManyToMany
-	@JoinTable(name = "titulares",
-		joinColumns = @JoinColumn(name="idCliente",referencedColumnName = "dni"),
-		inverseJoinColumns =@JoinColumn(name="idCuenta",referencedColumnName = "numeroCuenta"))
-	private List<Cuenta> cuentas;
 
 	public Cliente(int dni, String direccion, String nombre, int telefono) {
 		super();
@@ -73,13 +56,4 @@ public class Cliente implements Serializable {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-
-	public List<Cuenta> getCuentas() {
-		return this.cuentas;
-	}
-
-	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
-	}
-
 }

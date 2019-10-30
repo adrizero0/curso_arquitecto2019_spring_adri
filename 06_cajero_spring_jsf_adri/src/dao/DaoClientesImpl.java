@@ -2,50 +2,44 @@ package dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import model.Cliente;
-import model.Cuenta;
 
 /**
  * Session Bean implementation class DaoClientesImpl
  */
-@Stateless
+@Repository
 public class DaoClientesImpl implements DaoClientes {
-	@PersistenceContext(unitName = "cajeroPU")
-	EntityManager em;
+	@Autowired
+	JdbcTemplate template;
+	
 	@Override
 	public List<Cliente> findClienteByCuenta(int idCuenta) {
-		Cuenta cuenta=em.find(Cuenta.class, idCuenta);
-		if(cuenta!=null) {
-			return cuenta.getClientes();
-		}
-		return null;
+		String sql="SELECT * FROM clientes c INNER JOIN titulares t ON c.dni=t.idCliente WHERE t.idCuenta=?";		
+		return template.query(sql, (rs,fila)->new Cliente(rs.getInt("dni"),
+												   rs.getString("direccion"),
+												   rs.getString("nombre"),
+												   rs.getInt("telefono")),idCuenta);	
 	}
 
 	@Override
 	public void saveCliente(Cliente cliente) {
-		em.persist(cliente);
-		
+		String sql="insert into clientes (?,?,?,?)";
+		template.update(sql, cliente.getDni(), cliente.getNombre(),cliente.getDireccion(),cliente.getTelefono());		
 	}
 
 	@Override
 	public void updateCliente(Cliente cliente) {
-		em.merge(cliente);
-		
+		String sql="UPDATE clientes set nombre=?, direccion=?,telefono=? WHERE dni=? ";
+		template.update(sql, cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono(), cliente.getDni());		
 	}
 
 	@Override
 	public void removeCliente(int dni) {
-		Cliente cliente=em.find(Cliente.class, dni);
-		if(cliente!=null) {
-			em.remove(cliente);
-		}
-		
+		String sql="DELETE FROM clientes WHERE dni=? ";
+		template.update(sql,dni);
 	}
-
-    
-
 }
