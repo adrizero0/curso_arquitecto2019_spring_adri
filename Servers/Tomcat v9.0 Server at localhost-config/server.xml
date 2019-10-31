@@ -36,6 +36,7 @@
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
     -->
+     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/escuelads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/escuela" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/librosds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/libros" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/agenda2ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/agenda2" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/bancads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/bancabd" username="root"/>
