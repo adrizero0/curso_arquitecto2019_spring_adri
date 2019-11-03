@@ -23,7 +23,9 @@
 						
 			<p:outputLabel for="curso" value="Introduce Curso"/>
 	        <p:selectOneMenu id="curso" value="#{altaBean.alumno.curso}" style="width:125px">
-	            <f:selectItem itemLabel="#{altaBean.denominaciones}" itemValue="#{altaBean.cursos}" />
+				<f:selectItems var="c" value="#{altaBean.cursos}"
+							itemValue="#{c.denominacion}+#{c.duracion}+#{c.fechaInicio}+#{c.idCurso}"
+							itemLabel="#{c.denominacion}"/>
 	        </p:selectOneMenu>
 			
 			<h:commandButton action="#{altaBean.registrar()}" value="Guardar" /> 

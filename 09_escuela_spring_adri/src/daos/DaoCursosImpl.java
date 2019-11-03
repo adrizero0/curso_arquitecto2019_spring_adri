@@ -25,6 +25,7 @@ public class DaoCursosImpl implements DaoCursos {
 	@Override
 	public List<Curso> findCursos(Date fecha) {
 		Query qr=em.createNamedQuery("Curso.findCursoByDate");	
+		qr.setParameter(1, fecha);
 		return qr.getResultList();
 	}
 	
