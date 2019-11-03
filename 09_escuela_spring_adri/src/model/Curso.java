@@ -25,6 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name="cursos")
 @NamedQueries({
 	@NamedQuery(name="Curso.findAll", query="SELECT c FROM Curso c"),
+	@NamedQuery(name="Curso.findNames", query="SELECT DISTINCT(c.denominacion) FROM Curso c"),
 	@NamedQuery(name="Curso.findCursoByDate", query="SELECT c FROM Curso c WHERE c.fechaInicio>?1")
 })
 public class Curso implements Serializable {

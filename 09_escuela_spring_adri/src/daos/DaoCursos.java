@@ -9,4 +9,5 @@ public interface DaoCursos {
 	List<Curso> findCursos ();
 	List<Curso> findCursos (Date fecha);
 	void deleteCurso(int idCurso);
+	List<String> obtenerCursosDenominaciones();
 }

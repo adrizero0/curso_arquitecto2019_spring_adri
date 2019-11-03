@@ -11,4 +11,6 @@ public interface ServiceEscuela {
 	List<Curso> obtenerCursos();
 	List<Curso> obtenerCursos(Date fecha);
 	void borrarCurso(int idCurso);	
+	int obtenerAlumnos(int idCurso);
+	List<String> obtenerCursosDenominaciones();
 }

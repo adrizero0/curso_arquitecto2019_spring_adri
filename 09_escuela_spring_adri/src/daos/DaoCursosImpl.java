@@ -36,4 +36,10 @@ public class DaoCursosImpl implements DaoCursos {
 			em.remove(curso);
 		}		
 	}
+
+	@Override
+	public List<String> obtenerCursosDenominaciones() {
+		Query qr=em.createNamedQuery("Curso.findNames");	
+		return qr.getResultList();
+	}
 }
