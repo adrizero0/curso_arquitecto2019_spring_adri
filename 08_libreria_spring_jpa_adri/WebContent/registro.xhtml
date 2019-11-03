@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body> 
+	<center>
+		<h:form>
+			Introduce Usuario: 
+			<h:inputText id="us" value="#{registroBean.cliente.usuario}" required="true">				
+			</h:inputText><h:message for="us"/><br/><br/>
+			
+			Introduce Contraseña: 
+			<h:inputSecret id="clave1" value="#{registroBean.cliente.password}" required="true">
+			</h:inputSecret><h:message for="clave1"/><br/><br/>
+			
+			Repite Contraseña: 
+			<h:inputSecret id="clave2" value="#{registroBean.repetirClave}" required="true">
+				<f:validator validatorId="vClave"/>			
+			</h:inputSecret><h:message for="clave2"/><br/><br/>
+			
+			Introduce Email: 
+			<h:inputText id="em" value="#{registroBean.cliente.email}" required="true">				
+				<f:validator validatorId="vEmail"/>				
+			</h:inputText><h:message for="em"/><br/><br/>
+			
+			Introduce Teléfono: 
+			<h:inputText id="te" value="#{registroBean.cliente.telefono}" required="true">
+				<f:validateDoubleRange minimum="1000"/>
+				<f:converter converterId="converTel"/>
+			</h:inputText><h:message for="te"/><br/><br/>			
+			
+			<h:commandButton action="#{registroBean.registrar()}" value="Guardar" /> 
+		</h:form><br/><br/>
+		
+	</center>
+</h:body> 
+</html>
