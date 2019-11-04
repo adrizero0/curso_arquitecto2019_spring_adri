@@ -26,7 +26,7 @@ public class DaoAlumnosImpl implements DaoAlumnos {
 
 	@Override
 	public int findAlumnosPorCurso(int idCurso) {
-		Query qr=em.createNamedQuery("Alumno.findAlumnoByCurso");
+		Query qr=em.createNamedQuery("Alumno.findAlumnosByCurso");
 		qr.setParameter(1, idCurso);		
 		return qr.getResultList().size();
 	}

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name="alumnos")
 @NamedQueries({
 	@NamedQuery(name="Alumno.findAll", query="SELECT a FROM Alumno a"),
-	@NamedQuery(name="Alumno.findAlumnoByCurso", query="SELECT a FROM Alumno a WHERE a.curso.idCurso=?1")
+	@NamedQuery(name="Alumno.findAlumnosByCurso", query="SELECT a FROM Alumno a WHERE a.curso.idCurso=?1")
 })
 public class Alumno implements Serializable {
 	private static final long serialVersionUID = 1L;

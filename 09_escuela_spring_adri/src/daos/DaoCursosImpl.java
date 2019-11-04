@@ -25,6 +25,7 @@ public class DaoCursosImpl implements DaoCursos {
 	@Override
 	public List<Curso> findCursos(Date fecha) {
 		Query qr=em.createNamedQuery("Curso.findCursoByDate");	
+		qr.setParameter(1, fecha);
 		return qr.getResultList();
 	}
 	
@@ -35,5 +36,11 @@ public class DaoCursosImpl implements DaoCursos {
 		if(curso!=null) {
 			em.remove(curso);
 		}		
+	}
+
+	@Override
+	public List<String> obtenerCursosDenominaciones() {
+		Query qr=em.createNamedQuery("Curso.findNames");	
+		return qr.getResultList();
 	}
 }

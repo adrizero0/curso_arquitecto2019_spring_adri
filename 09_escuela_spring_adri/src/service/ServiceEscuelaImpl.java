@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import daos.DaoAlumnos;
 import daos.DaoCursos;
@@ -19,27 +20,38 @@ public class ServiceEscuelaImpl implements ServiceEscuela {
 	@Autowired
 	DaoCursos daoCursos;
 	
+	@Transactional
 	@Override
 	public void altaAlumno(Alumno alumno) {
-		daoAlumnos.findAlumno(alumno.getDni());
+		if(!daoAlumnos.findAlumno(alumno.getDni())) {
+			daoAlumnos.registrar(alumno);			
+		}else {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override
 	public List<Curso> obtenerCursos() {
-		// TODO Auto-generated method stub
-		return null;
+		return daoCursos.findCursos();
 	}
 
 	@Override
-	public List<Curso> obtenerCursos(Date fecha) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Curso> obtenerCursos(Date fecha) {		
+		return daoCursos.findCursos(fecha);
 	}
 
 	@Override
 	public void borrarCurso(int idCurso) {
-		// TODO Auto-generated method stub
-		
-	}	
+		daoCursos.deleteCurso(idCurso);		
+	}
 
+	@Override
+	public int obtenerAlumnos(int idCurso) {		
+		return daoAlumnos.findAlumnosPorCurso(idCurso) ;
+	}
+
+	@Override
+	public List<String> obtenerCursosDenominaciones() {
+		return daoCursos.obtenerCursosDenominaciones();
+	}
 }
