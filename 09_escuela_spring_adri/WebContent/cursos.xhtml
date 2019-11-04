@@ -11,34 +11,32 @@
 		<h:form prependId="false">
 			<p:outputLabel value="Introduce fecha"/>
 			<p:calendar id="fecha" showOn="button" value="#{cursosBean.fecha}"/>
-			<p:commandButton value="Ver cursos" action="#{cursosBean.buscar()}" update="listaCursos"/>
-		</h:form>
+			<p:commandButton value="Ver cursos" action="#{cursosBean.buscar()}" update="listaCursos"/>		
 		
 		<p:dataTable id="listaCursos" var="tc" value="#{cursosBean.cursosPorFecha}" style="width:80%" >
 			    <p:column headerText="Denominación">
-			        <h:outputText value="#{tc.denominacion}" />
+			        <h:outputText value="#{tc.curso.denominacion}" />
 			    </p:column>
 			 
 			    <p:column headerText="Duración">
-			        <h:outputText value="#{tc.duracion}" />
+			        <h:outputText value="#{tc.curso.duracion}" />
 			    </p:column>
 			 
 			    <p:column headerText="Fecha">
-			        <h:outputText value="#{tc.fechaInicio}" />
+			        <h:outputText value="#{tc.curso.fechaInicio}" />
 			    </p:column>
 			 
 			    <p:column headerText="Total Alumnos">
-			        <h:outputText value="#{cursosBean.totalAlumnos}" />
+			        <h:outputText value="#{tc.numAlumnos}" />
 				</p:column>
-				<p:column headerText="">
-					<h:form>
-			        	<h:commandLink action="#{cursosBean.borrarCurso(tc.idCurso)}" value="Eliminar" />
-			        </h:form>
+				
+				<p:column headerText="">					
+			        	<p:commandLink action="#{cursosBean.borrarCurso(tc.curso.idCurso)}" value="Eliminar" ajax="listaCursos"/>			        
 				</p:column>
 			</p:dataTable>		
-		
+		</h:form>
 		<br/><br/>		
-		<h:link outcome="index" value="Volver"/>	
+		<h:link outcome="index" value="Volver"/>
 	</center>
 
 </h:body> 

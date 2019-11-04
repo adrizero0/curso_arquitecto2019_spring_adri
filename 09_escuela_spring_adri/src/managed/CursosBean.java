@@ -6,40 +6,35 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Curso;
+import model.CursoView;
 import service.ServiceEscuela;
 
 @ManagedBean(name="cursosBean")
-@RequestScoped
+@ViewScoped
 public class CursosBean {
 	@ManagedProperty ("#{sEscuela}")
 	ServiceEscuela serviceEscuela;
 	
 	Date fecha;
 	List<Curso> cursos;
-	List<Curso> cursosPorFecha;
+	List<CursoView> cursosPorFecha;
 	int idCurso;
-	int totalAlumnos;
 	
 	@PostConstruct
 	public void inicio() {
 		cursos=serviceEscuela.obtenerCursos();
-		for(Curso c:cursos) {			
-			totalAlumnos=serviceEscuela.obtenerAlumnos(c.getIdCurso());
-		}
 	}
 	
 	public void buscar() {
 		cursosPorFecha= serviceEscuela.obtenerCursos(fecha);
-		for(Curso c:cursosPorFecha) {			
-			totalAlumnos=serviceEscuela.obtenerAlumnos(c.getIdCurso());
-		}
 	}
 	
-	public void borrarCurso() {
+	public void borrarCurso(int idCurso) {
 		serviceEscuela.borrarCurso(idCurso);
+		buscar();
 	}
 	
 /////GETTERS & SETTERS
@@ -68,11 +63,11 @@ public class CursosBean {
 		this.cursos = cursos;
 	}
 
-	public List<Curso> getCursosPorFecha() {
+	public List<CursoView> getCursosPorFecha() {
 		return cursosPorFecha;
 	}
 
-	public void setCursosPorFecha(List<Curso> cursosPorFecha) {
+	public void setCursosPorFecha(List<CursoView> cursosPorFecha) {
 		this.cursosPorFecha = cursosPorFecha;
 	}
 
@@ -82,14 +77,6 @@ public class CursosBean {
 
 	public void setIdCurso(int idCurso) {
 		this.idCurso = idCurso;
-	}
-
-	public int getTotalAlumnos() {
-		return totalAlumnos;
-	}
-
-	public void setTotalAlumnos(int totalAlumnos) {
-		this.totalAlumnos = totalAlumnos;
 	}	
 	
 }

@@ -16,12 +16,14 @@ import service.ServiceEscuela;
 public class AltaBean {
 	Alumno alumno;
 	List<Curso> cursos;
-	List<String> denominaciones;
+	int idCurso;
 	
 	@ManagedProperty ("#{sEscuela}")
 	ServiceEscuela serviceEscuela;
 	
 	public String registrar() {
+		Curso curso=serviceEscuela.obtenerCurso(idCurso);
+		alumno.setCurso(curso);
 		serviceEscuela.altaAlumno(alumno);		
 		return "index";
 	}
@@ -33,7 +35,6 @@ public class AltaBean {
 	@PostConstruct
 	public void inicio() {
 		cursos=serviceEscuela.obtenerCursos();
-		denominaciones=serviceEscuela.obtenerCursosDenominaciones();
 	}
 	
 /////GETTERS & SETTERS
@@ -43,14 +44,14 @@ public class AltaBean {
 		return alumno;
 	}
 
-	public List<String> getDenominaciones() {
-		return denominaciones;
+	public int getIdCurso() {
+		return idCurso;
 	}
 
-	public void setDenominaciones(List<String> denominaciones) {
-		this.denominaciones = denominaciones;
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
-
+	
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}

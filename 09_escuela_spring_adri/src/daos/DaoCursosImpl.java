@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.Curso;
+import model.CursoView;
 @Repository("daoCursos")
 public class DaoCursosImpl implements DaoCursos {
 	@PersistenceContext(unitName = "escuelaPU")
@@ -39,8 +40,14 @@ public class DaoCursosImpl implements DaoCursos {
 	}
 
 	@Override
-	public List<String> obtenerCursosDenominaciones() {
-		Query qr=em.createNamedQuery("Curso.findNames");	
-		return qr.getResultList();
+	public Curso findCurso(int idCurso) {
+		return em.find(Curso.class, idCurso);
+	}
+
+	@Override
+	public int findAlumnosPorCurso(int idCurso) {
+		Query qr=em.createNamedQuery("Curso.findAlumnosByCurso");
+		qr.setParameter(1, idCurso);
+		return qr.getResultList().size();
 	}
 }

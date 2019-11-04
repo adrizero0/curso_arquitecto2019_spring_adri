@@ -23,11 +23,5 @@ public class DaoAlumnosImpl implements DaoAlumnos {
 	public void registrar(Alumno a) {
 		em.persist(a);		
 	}
-
-	@Override
-	public int findAlumnosPorCurso(int idCurso) {
-		Query qr=em.createNamedQuery("Alumno.findAlumnosByCurso");
-		qr.setParameter(1, idCurso);		
-		return qr.getResultList().size();
-	}
+	
 }
