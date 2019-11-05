@@ -21,10 +21,10 @@
 			<p:outputLabel for="edad" value="Introduce Edad:"/> 
 			<h:inputText id="edad" value="#{altaBean.alumno.edad}" required="true"/><br/><br/>	
 						
-			<p:outputLabel for="curso" value="Introduce Curso"/>
-	        <p:selectOneMenu id="curso" value="#{altaBean.alumno.curso}" style="width:125px">
+			<p:outputLabel for="idCurso" value="Introduce Curso"/>
+	        <p:selectOneMenu id="idCurso" value="#{altaBean.idCurso}" style="width:125px">
 				<f:selectItems var="c" value="#{altaBean.cursos}"
-							itemValue="#{c.denominacion}+#{c.duracion}+#{c.fechaInicio}+#{c.idCurso}"
+							itemValue="#{c.idCurso}"
 							itemLabel="#{c.denominacion}"/>
 	        </p:selectOneMenu>
 			

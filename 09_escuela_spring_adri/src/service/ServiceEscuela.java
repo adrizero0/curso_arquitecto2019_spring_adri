@@ -5,12 +5,12 @@ import java.util.List;
 
 import model.Alumno;
 import model.Curso;
+import model.CursoView;
 
 public interface ServiceEscuela {
 	void altaAlumno(Alumno alumno);
 	List<Curso> obtenerCursos();
-	List<Curso> obtenerCursos(Date fecha);
+	List<CursoView> obtenerCursos(Date fecha);
 	void borrarCurso(int idCurso);	
-	int obtenerAlumnos(int idCurso);
-	List<String> obtenerCursosDenominaciones();
+	Curso obtenerCurso(int idCurso);
 }

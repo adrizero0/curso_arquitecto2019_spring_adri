@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import daos.DaoAlumnos;
 import daos.DaoCursos;
 import model.Alumno;
 import model.Curso;
+import model.CursoView;
 
 
 @Service ("sEscuela")
@@ -34,24 +36,29 @@ public class ServiceEscuelaImpl implements ServiceEscuela {
 	public List<Curso> obtenerCursos() {
 		return daoCursos.findCursos();
 	}
-
+	@Transactional
 	@Override
-	public List<Curso> obtenerCursos(Date fecha) {		
-		return daoCursos.findCursos(fecha);
+	public List<CursoView> obtenerCursos(Date fecha) {
+		List<Curso> cursos=daoCursos.findCursos(fecha);
+		List<CursoView> cursosView=new ArrayList<>();
+		if(cursos==null||cursos.size()==0) {
+			return null;
+		}
+		for(Curso c:cursos) {
+			//CursoView cView=new CursoView(c,c.getAlumnos().size());
+			CursoView cView=new CursoView(c,daoCursos.findAlumnosPorCurso(c.getIdCurso()));
+			cursosView.add(cView);
+		}
+		return cursosView;
 	}
 
 	@Override
 	public void borrarCurso(int idCurso) {
-		daoCursos.deleteCurso(idCurso);		
+		daoCursos.deleteCurso(idCurso);
 	}
 
 	@Override
-	public int obtenerAlumnos(int idCurso) {		
-		return daoAlumnos.findAlumnosPorCurso(idCurso) ;
-	}
-
-	@Override
-	public List<String> obtenerCursosDenominaciones() {
-		return daoCursos.obtenerCursosDenominaciones();
+	public Curso obtenerCurso(int idCurso) {
+		return daoCursos.findCurso(idCurso);
 	}
 }
