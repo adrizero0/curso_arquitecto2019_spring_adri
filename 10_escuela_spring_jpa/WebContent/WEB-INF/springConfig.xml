@@ -13,6 +13,9 @@
 	<context:annotation-config/>
 	<jee:jndi-lookup jndi-name="refescuela" id="dataServer"/>
 	<context:component-scan base-package="service"/>
+	
+	<!-- ESTO ES PARA QUE SPRING DATA JPA O JPA REPOSITORY SEPA DONDE ESTÁN LAS INTERFACES QUE TIENE QUE IMPLEMENTAR -->
+	<!-- Y HAY QUE DARLE LA REFERENCIA DEL TRANSACTION MANAGER  -->
 	<jpa:repositories base-package="dao" 
 		transaction-manager-ref="txManager" 
 		entity-manager-factory-ref="factory"/>
