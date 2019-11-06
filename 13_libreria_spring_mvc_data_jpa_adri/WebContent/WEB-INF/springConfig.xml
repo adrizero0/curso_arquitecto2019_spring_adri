@@ -13,8 +13,8 @@
 	<context:annotation-config/>
 	<jee:jndi-lookup jndi-name="reflibros" id="dataServer"/>
 	
-<!-- 	SE QUITA PORQUE NO HAY CLASES QUE ESCANEAR -->
-<!-- 	<context:component-scan base-package="daos"/> -->
+<!-- 	SE PONE PORQUE SIII HAY CLASES QUE ESCANEAR -->
+	<context:component-scan base-package="service"/>
 	
 	<!-- ESTO ES PARA QUE SPRING DATA JPA O JPA REPOSITORY SEPA DONDE ESTÁN LAS INTERFACES QUE TIENE QUE IMPLEMENTAR -->
 	<!-- Y HAY QUE DARLE LA REFERENCIA DEL TRANSACTION MANAGER  -->
@@ -43,8 +43,7 @@
 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 			</props>
 		</property>
-	</bean>
-		
+	</bean>		
 	
 <!-- 	TRANSACCIONALIDAD -->
 	<bean id="txManager"

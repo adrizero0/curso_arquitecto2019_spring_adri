@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http >
+		<!-- 	MECANISMO DE AUTENTICACION -->
+		<security:http-basic/>		
+		
+		<!--	PROTECCION DE RECURSOS -->
+		<security:intercept-url pattern="/menu.jsp" access="ROLE_USER, ROLE_ADMIN"/>
+		<security:intercept-url pattern="/ventas.jsp" access="ROLE_ADMIN"/>
+	</security:http>
+	
+	<!-- 	AUTENTICAR  -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+<!-- 			 OPCION 1: USUARIOS A PELO  -->
+			<security:user-service>
+				<security:user name="user1" password="user1" pauthorities="ROLE_USER"/>
+				<security:user name="user2" password="user2" pauthorities="ROLE_USER, ROLE_ADMIN"/>			
+			</security:user-service>
+						
+			<!-- OPCION 2: USUARIOS EN ARCHIVO DE TIPO PROPERTIES 
+			<security:user-service properties="/WEB-INF/usuarios.properties"/>
+			
+			OPCION 3: USUARIOS EN UNA BASE DE DATOS (3 DATOS, USUARIO, CLAVE Y SI ESTÁ HABILITADO O NO/ AUTH ES EL ROL)
+			<security:jdbc-user-service data-source-ref="dataUsers"
+										users-by-username-query="SELECT user, password, enabled FROM users WHERE user=?"
+										authorities-by-username-query="SELECT user, auth FROM roles WHERE user=?"/>
+										
+			OPCION 4: USUARIOS EN LDAP 
+			<security:ldap-user-service server-ref="sldap"/>		-->	
+		</security:authentication-provider>	
+	</security:authentication-manager>
+	
+	<security:ldap-server id="sldap" url="ldap://localhost:339" manager-dn="admin" manager-password="admin"/>
+
+</beans>
