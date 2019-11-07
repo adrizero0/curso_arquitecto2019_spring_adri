@@ -17,6 +17,7 @@ import service.ServiceClientes;
 public class VentasController {
 	@Autowired
 	ServiceClientes sClientes;
+	
 	@GetMapping(value="/ventas")
 	public String ventas(@SessionAttribute("cliente") Cliente cliente,
 						HttpServletRequest request) {

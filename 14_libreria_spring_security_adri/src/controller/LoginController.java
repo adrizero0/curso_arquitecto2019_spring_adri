@@ -15,6 +15,7 @@ import service.ServiceClientes;
 public class LoginController {
 	@Autowired
 	ServiceClientes sClientes;
+	
 	@PostMapping(value = "/login")
 	public String login(@RequestParam("user") String user, 
 						@RequestParam("pwd")String pwd,
