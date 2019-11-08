@@ -4,22 +4,54 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jee="http://www.springframework.org/schema/jee"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<context:annotation-config/>
 	<jee:jndi-lookup jndi-name="refbanca" id="dataServer"/>
-	<context:component-scan base-package="dao,service"/>
-	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="dataServer"></constructor-arg>
+	<context:component-scan base-package="service"/>
+	
+	<jpa:repositories base-package="dao" transaction-manager-ref="txManager" entity-manager-factory-ref="factory"/>
+	
+<!-- 	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 		<constructor-arg ref="dataServer"></constructor-arg> -->
+<!-- 	</bean> -->
+
+	<!-- configuración integración Spring-JPA-Hibernate -->
+	<!-- creación adaptador JPA-Hibernate -->
+	<bean id="adapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform"
+			value="org.hibernate.dialect.MySQLDialect">
+		</property>
 	</bean>
+	
+	<!-- configuración JPA -->
+	<bean id="factory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="bancaPU"></property>
+		<property name="dataSource" ref="dataServer"></property>
+		<property name="jpaVendorAdapter" ref="adapter"></property>
+		<property name="packagesToScan" value="model"></property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+			</props>
+		</property>
+	</bean>	
 	
 <!-- 	TRANSACCIONALIDAD -->
 	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataServer"></property>
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="factory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="txManager"/>
+	<tx:annotation-driven transaction-manager="txManager"/>	
 
 </beans>

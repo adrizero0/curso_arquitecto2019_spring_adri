@@ -16,7 +16,7 @@ import model.Cuenta;
 import model.Movimiento;
 
 
-@Service ("sCajero")
+@Service
 public class ServiceCajeroImpl implements ServiceCajero {	
 	@Autowired
 	DaoClientes daoClientes;
