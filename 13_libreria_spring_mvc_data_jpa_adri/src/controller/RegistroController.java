@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import daos.DaoCliente;
 import model.Cliente;
+import service.ServiceCliente;
 
 @Controller
 public class RegistroController {
 	@Autowired
-	DaoCliente daoCliente;
+	ServiceCliente sCliente;
 	
 	@GetMapping(value = "toRegistro")
 	public String inicio(Model model) {
@@ -24,7 +25,7 @@ public class RegistroController {
 	
 	@PostMapping(value="/registrar")
 	public String registrar(@ModelAttribute("cliente") Cliente cliente) {		
-		daoCliente.saveAndFlush(cliente);
-		return "login";		
+		sCliente.guardarCliente(cliente);
+		return "login";
 	}
 }

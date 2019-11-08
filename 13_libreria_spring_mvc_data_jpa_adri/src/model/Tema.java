@@ -18,7 +18,6 @@ public class Tema implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idTema;
-
 	private String tema;
 
 	//bi-directional many-to-one association to Libro
@@ -61,7 +60,6 @@ public class Tema implements Serializable {
 	public Libro addLibro(Libro libro) {
 		getLibros().add(libro);
 		libro.setTema(this);
-
 		return libro;
 	}
 
