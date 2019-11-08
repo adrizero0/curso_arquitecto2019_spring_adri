@@ -13,7 +13,7 @@
 <div class="container">
   <h1>Ingreso</h1>
   <br/>
-  <form action="ingreso" method="post">
+  <form action="doIngreso" method="post">
     <div class="input-group">
   	 	<span class="input-group-addon">Cantidad</span>
     	<input id="email" type="text" class="form-control" name="cantidad" placeholder="cantidad" required="required">

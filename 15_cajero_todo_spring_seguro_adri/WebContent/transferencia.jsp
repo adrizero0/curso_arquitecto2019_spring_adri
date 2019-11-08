@@ -13,15 +13,15 @@
 <div class="container">
   <h1>Transferencia</h1>
   <br/>
-  <form action="transferencia" method="post">
+  <form action="doTransferencia" method="post">
     <div class="input-group">
   	 	<span class="input-group-addon">Cantidad:</span>
-    	<input id="email" type="text" class="form-control" name="cantidad" placeholder="cantidad" required="required">
+    	<input id="cantidad" type="text" class="form-control" name="cantidad" placeholder="cantidad" required="required">
 	</div>
 	<br/><br/>
 	<div class="input-group">
   	 	<span class="input-group-addon">Cuenta destino:</span>
-    	<input id="email" type="text" class="form-control" name="cuentaDestino" placeholder="cuenta" required="required">
+    	<input id="email" type="text" class="form-control" name="idCuentaDestino" placeholder="cuenta" required="required">
 	</div>
   	<br/>
     <button type="submit" class="btn btn-default btn-primary" style="width:100%">Transferir</button>

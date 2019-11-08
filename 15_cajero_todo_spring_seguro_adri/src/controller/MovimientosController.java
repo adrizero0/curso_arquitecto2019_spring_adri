@@ -17,11 +17,12 @@ public class MovimientosController {
 	@Autowired
 	ServiceCajero sCajero;
 	
-	@GetMapping(value="/movimientos")
-	public String ventas(@SessionAttribute("cuenta") Cuenta cuenta,
+	@GetMapping(value="/doMovimientos")
+	public String movimientos(@SessionAttribute("cuenta") Cuenta cuenta,
 						HttpServletRequest request) {
 		List<Movimiento> movimientos=sCajero.obtenerMovimientos(cuenta.getNumeroCuenta());
 		request.setAttribute("movimientos", movimientos);
+		request.setAttribute("saldo", sCajero.obtenerSaldo(cuenta.getNumeroCuenta()));
 		return "movimientos";
 	}
 	

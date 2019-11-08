@@ -9,6 +9,6 @@
 <body>
 	<h1>Acceso restringido</h1>
 	<br/><br/>
-	<a href="toLogin">volver</a>
+	<a href="toMenu">volver</a>
 </body>
 </html>

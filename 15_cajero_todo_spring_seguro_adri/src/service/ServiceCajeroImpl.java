@@ -76,4 +76,18 @@ public class ServiceCajeroImpl implements ServiceCajero {
 		Cuenta cuenta=obtenerCuenta(idCuenta);
 		return cuenta.getSaldo();
 	}
+
+	@Override
+	public void altaCuenta(Cuenta cuenta) {
+		if(!daoCuentas.existsById(cuenta.getNumeroCuenta())) {
+			daoCuentas.saveAndFlush(cuenta);
+		}else {
+			throw new RuntimeException();
+		}		
+	}
+
+	@Override
+	public List<Cliente> obtenerTitulares() {
+		return daoClientes.findAll();
+	}
 }

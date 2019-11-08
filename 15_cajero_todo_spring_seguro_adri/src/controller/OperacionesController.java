@@ -15,24 +15,24 @@ public class OperacionesController {
 	@Autowired
 	ServiceCajero sCajero;
 	
-	@PostMapping(value = "/ingreso")
-	public String ingreso(@RequestParam("cantidad") int cantidad,
+	@PostMapping(value = "/doIngreso")
+	public String ingreso(@RequestParam("cantidad") double cantidad,
 						@SessionAttribute("cuenta") Cuenta cuenta,
 						HttpServletRequest request) {
 		sCajero.ingreso(cuenta.getNumeroCuenta(),cantidad);		
-		return "operaciones";		
+		return "operaciones";
 	}
 	
-	@PostMapping(value = "/extraccion")
-	public String extraccion(@RequestParam("cantidad") int cantidad,
+	@PostMapping(value = "/doExtraccion")
+	public String extraccion(@RequestParam("cantidad") double cantidad,
 						@SessionAttribute("cuenta") Cuenta cuenta,
 						HttpServletRequest request) {
 		sCajero.extraccion(cuenta.getNumeroCuenta(),cantidad);		
 		return "operaciones";
 	}
 	
-	@PostMapping(value = "/transferencia")
-	public String transferencia(@RequestParam("cantidad") int cantidad,
+	@PostMapping(value = "/doTransferencia")
+	public String transferencia(@RequestParam("cantidad") double cantidad,
 						@RequestParam("idCuentaDestino") int idCuentaDestino,
 						@SessionAttribute("cuenta") Cuenta cuenta,
 						HttpServletRequest request) {
