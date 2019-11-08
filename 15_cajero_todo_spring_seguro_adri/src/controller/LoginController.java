@@ -15,7 +15,7 @@ public class LoginController {
 	@Autowired
 	ServiceCajero sCajero;
 	
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/doLogin")
 	public String login(@RequestParam("idCuenta") int idCuenta,
 						HttpSession sesion) {
 		Cuenta cuenta=sCajero.obtenerCuenta(idCuenta);
