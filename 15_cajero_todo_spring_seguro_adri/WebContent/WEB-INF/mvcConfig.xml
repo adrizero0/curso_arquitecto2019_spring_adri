@@ -18,4 +18,8 @@
 	<mvc:view-controller path="toOperaciones" view-name="operaciones"/>
 	<mvc:view-controller path="toMenu" view-name="menu"/>
 	<mvc:view-controller path="toLogin" view-name="login"/>
+	<mvc:view-controller path="toExtraccion" view-name="extraccion"/>
+	<mvc:view-controller path="toTransferencia" view-name="transferencia"/>
+	<mvc:view-controller path="toIngreso" view-name="ingreso"/>
+	<mvc:view-controller path="toMenuAdmin" view-name="menuadmin"/>
 </beans>

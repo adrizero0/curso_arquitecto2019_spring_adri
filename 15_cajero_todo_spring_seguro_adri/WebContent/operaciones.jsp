@@ -11,10 +11,10 @@
 </head>
 <body>
 	<div class="input-group">
-		<h2><a href="ingreso">Ingreso</a></h2><br/><br/>
-		<h2><a href="extraccion">Extracción</a></h2><br/><br/>
-		<h2><a href="transferencia">Transferencia</a></h2><br/><br/>
-		<h2><a href="movimientos">Movimientos</a><br/></h2><br/>
+		<h2><a href="toIngreso">Ingreso</a></h2><br/><br/>
+		<h2><a href="toExtraccion">Extracción</a></h2><br/><br/>
+		<h2><a href="toTransferencia">Transferencia</a></h2><br/><br/>
+		<h2><a href="doMovimientos">Movimientos</a><br/></h2><br/>
 	</div>
 </body>
 </html>

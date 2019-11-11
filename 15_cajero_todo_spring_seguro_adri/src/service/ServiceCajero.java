@@ -12,6 +12,9 @@ public interface ServiceCajero {
 	void ingreso(int idCuenta, double cantidad);
 	void transferencia(int idCuentaOrigen, int idCuentaDestino, double cantidad);
 	List<Cliente> obtenerTitulares(int idCuenta);
+	List<Cliente> obtenerTitulares();
 	List<Movimiento> obtenerMovimientos(int idCuenta);
 	double obtenerSaldo(int idCuenta);
+	
+	void altaCuenta(Cuenta cuenta);
 }

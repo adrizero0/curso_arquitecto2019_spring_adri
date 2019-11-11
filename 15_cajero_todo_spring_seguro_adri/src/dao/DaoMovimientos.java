@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import model.Movimiento;
 
 public interface DaoMovimientos extends JpaRepository<Movimiento, Integer>{
-	@Query("SELECT m FROM Movimiento m WHERE m.cuenta.numeroCuenta=?")
+	@Query("SELECT m FROM Movimiento m WHERE m.cuenta.numeroCuenta=?1")
 	List<Movimiento> findMovimientoByCuenta(int idCuenta);
 }

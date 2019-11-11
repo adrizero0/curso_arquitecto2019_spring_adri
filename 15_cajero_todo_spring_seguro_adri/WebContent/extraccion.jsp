@@ -13,7 +13,7 @@
 <div class="container">
   <h1>Extracción</h1>
   <br/>
-  <form action="extraccion" method="post">
+  <form action="doExtraccion" method="post">
     <div class="input-group">
   	 	<span class="input-group-addon">Cantidad</span>
     	<input id="email" type="text" class="form-control" name="cantidad" placeholder="cantidad" required="required">
