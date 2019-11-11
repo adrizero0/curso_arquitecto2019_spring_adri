@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/06_cajero_usuarios/build/classes"/>
-        <property name="context-root" value="15_cajero_completo_seguro"/>
+        <property name="context-root" value="15_cajero_completo_seguro_profe"/>
     </wb-module>
 </project-modules>

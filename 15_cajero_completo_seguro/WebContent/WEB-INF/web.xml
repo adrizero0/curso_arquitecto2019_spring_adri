@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>14_libreria_spring_security</display-name>
+  <display-name>15_cajero_completo_seguro_profe</display-name>
   <welcome-file-list>
-  	<welcome-file>menu.jsp</welcome-file>
+    <welcome-file>menu.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  	<servlet-name>Dispatcher</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
-  		<param-name>contextConfigLocation</param-name>
-  		<param-value>/WEB-INF/mvcConfig.xml</param-value>
-  	</init-param>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/mvcConfig.xml</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Dispatcher</servlet-name>
-  	<url-pattern>/</url-pattern>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
- 
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/springConfig.xml
@@ -26,8 +24,6 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
- 
- <!--   filtro de seguridad de spring -->
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -37,9 +33,7 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <error-page>
-  	<error-code>403</error-code>
-  	<location>/error.jsp</location>
+    <error-code>403</error-code>
+    <location>/error.jsp</location>
   </error-page>
-  
-  
 </web-app>
