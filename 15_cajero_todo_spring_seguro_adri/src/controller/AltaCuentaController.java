@@ -22,7 +22,7 @@ public class AltaCuentaController {
 	public String inicio(HttpServletRequest request, Model model) {
 		Cuenta cuenta=new Cuenta();
 		model.addAttribute("cuentaNueva",cuenta);
-		request.setAttribute("clientes", sCajero.obtenerTitulares());
+		request.setAttribute("clientesLista", sCajero.obtenerTitulares());
 		return "altacuenta";
 	}
 	
@@ -33,7 +33,7 @@ public class AltaCuentaController {
 		if(cuenta!=null) {
 			return "error";
 		}else {
-			 sCajero.altaCuenta(cuentaNueva);
+			sCajero.altaCuenta(cuentaNueva);
 			return "menuadmin";
 		}
 	}

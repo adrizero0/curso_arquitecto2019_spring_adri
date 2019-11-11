@@ -23,11 +23,11 @@
 			<label>Número de cuenta:</label><f:input path="numeroCuenta" class="form-control" style="width:30%" placeholder="Número de cuenta"/>
 		</div>
 		<div class="form-group">
-			<label>Tipo de cuenta:</label><f:input path="tipocuenta" class="form-control" style="width:30%" placeholder="Contraseña"/>
+			<label>Tipo de cuenta:</label><f:input path="tipocuenta" class="form-control" style="width:30%" placeholder="Tipo de cuenta"/>
 		</div>	
-		<select name="cliente">
+		<select name="clientes">
 			<option value="">Selecciona cliente</option>
-			<c:forEach var="c" items="${clientes}">
+			<c:forEach var="c" items="${requestScope.clientesLista}">
 				<option value="${c.dni}">${c.nombre}</option>				
 			</c:forEach>
 				
