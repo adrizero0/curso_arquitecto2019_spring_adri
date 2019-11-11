@@ -5,13 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<security:http>
+	<security:http use-expressions="false">
 		<!-- 	MECANISMO DE AUTENTICACION -->
 		<security:http-basic/>		
 		<!--<security:form-login login-page="/milogin.jsp" authentication-failure-url="/error.jsp"/> -->		
 		<!--	PROTECCION DE RECURSOS -->
-		<security:intercept-url pattern="/toLogin" access="hasRole('USER')"/>
-		<security:intercept-url pattern="/toMenuAdmin" access="hasRole('ADMIN')"/>		
+		<security:intercept-url pattern="/toLogin" access="ROLE_USER"/>
+		<security:intercept-url pattern="/toMenuAdmin" access="ROLE_ADMIN"/>
 		<!--PROTECCION CONTRA ATAQUES -->
 		<security:csrf disabled="true"/>
 	</security:http>
@@ -27,5 +27,5 @@
 										authorities-by-username-query="SELECT usuario, rol FROM roles WHERE usuario=?"/>
 		</security:authentication-provider>	
 	</security:authentication-manager>
-
+	
 </beans>

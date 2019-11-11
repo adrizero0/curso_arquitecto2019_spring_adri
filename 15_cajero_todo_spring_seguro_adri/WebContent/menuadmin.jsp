@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="input-group">
-		<h2><a href="">Nueva Cuenta</a></h2><br/><br/>
+		<h2><a href="toAltaCuenta">Nueva Cuenta</a></h2><br/><br/>
 	</div>
 </body>
 </html>

@@ -17,7 +17,7 @@
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
-			  <security:password-encoder hash="bcrypt"/>
+<!-- 			<security:password-encoder hash="bcrypt"/> -->
 			<!-- opción 1. Usuarios en el propio archivo 
 			<security:user-service>
 				<security:user name="user1" password="{noop}user1" authorities="ROLE_USER"/>
