@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,14 @@
 	<h1>Crear nueva cuenta</h1>
 	<f:form action="doAltaCuenta" method="post" modelAttribute="cuentaNueva">
 		<div class="form-group">
-			<label>Número de cuenta:</label><f:input path="numeroCuenta" class="form-control" style="width:30%" placeholder="Número de cuenta"/>
+			<label>Número de cuenta:</label>
+			<f:input path="numeroCuenta" class="form-control" style="width:30%" placeholder="Número de cuenta"/>
 		</div>
 		<div class="form-group">
-			<label>Tipo de cuenta:</label><f:input path="tipocuenta" class="form-control" style="width:30%" placeholder="Tipo de cuenta"/>
+			<label>Tipo de cuenta:</label>
+			<f:input path="tipocuenta" class="form-control" style="width:30%" placeholder="Tipo de cuenta"/>
 		</div>	
-		<select name="clientes">
+		<select name="dni">
 			<option value="">Selecciona cliente</option>
 			<c:forEach var="c" items="${requestScope.clientesLista}">
 				<option value="${c.dni}">${c.nombre}</option>				
