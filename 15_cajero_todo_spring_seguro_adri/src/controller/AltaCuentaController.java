@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import model.Cliente;
 import model.Cuenta;
 import service.ServiceCajero;
 
@@ -22,18 +24,22 @@ public class AltaCuentaController {
 	public String inicio(HttpServletRequest request, Model model) {
 		Cuenta cuenta=new Cuenta();
 		model.addAttribute("cuentaNueva",cuenta);
-		request.setAttribute("clientes", sCajero.obtenerTitulares());
+		request.setAttribute("clientesLista", sCajero.obtenerTitulares());
 		return "altacuenta";
 	}
 	
 	@PostMapping(value = "/doAltaCuenta")
-	public String login(@RequestParam("numeroCuenta") int numeroCuenta,
-						@ModelAttribute("cuentaNueva") Cuenta cuentaNueva) {
-		Cuenta cuenta=sCajero.obtenerCuenta(numeroCuenta);
+	public String alta(@ModelAttribute("cuentaNueva") Cuenta cuentaNueva) {
+		Cuenta cuenta=sCajero.obtenerCuenta(cuentaNueva.getNumeroCuenta());
 		if(cuenta!=null) {
 			return "error";
 		}else {
-			 sCajero.altaCuenta(cuentaNueva);
+			List<Cliente> clientes=cuentaNueva.getClientes();
+			for(Cliente cl:clientes) {
+				int dni=cl.getDni();
+				Cliente cliente=sCajero.obtenerCliente(dni);
+			}
+			sCajero.altaCuenta(cuentaNueva);
 			return "menuadmin";
 		}
 	}

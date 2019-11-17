@@ -8,6 +8,7 @@ import model.Movimiento;
 
 public interface ServiceCajero {
 	Cuenta obtenerCuenta(int idCuenta);
+	Cliente obtenerCliente(int idCliente);
 	void extraccion(int idCuenta, double cantidad);
 	void ingreso(int idCuenta, double cantidad);
 	void transferencia(int idCuentaOrigen, int idCuentaDestino, double cantidad);

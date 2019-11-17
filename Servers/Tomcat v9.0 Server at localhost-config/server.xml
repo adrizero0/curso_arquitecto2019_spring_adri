@@ -36,7 +36,7 @@
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
     -->
-     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/escuelads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/escuela" username="root"/>
+    <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/escuelads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/escuela" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/librosds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/libros" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/agenda2ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/agenda2" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/bancads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/bancabd" username="root"/>
@@ -154,7 +154,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="16_cajero_aop_adri" path="/06_cajero_usuarios" reloadable="true" source="org.eclipse.jst.jee.server:16_cajero_aop_adri"/></Host>
+      <Context docBase="16_cajero_aop_adri" path="/06_cajero_usuarios" reloadable="true" source="org.eclipse.jst.jee.server:16_cajero_aop_adri"/><Context docBase="15_cajero_todo_spring_seguro_adri" path="/15_cajero_todo_spring_seguro_adri" reloadable="true" source="org.eclipse.jst.jee.server:15_cajero_todo_spring_seguro_adri"/></Host>
     </Engine>
   </Service>
 </Server>
