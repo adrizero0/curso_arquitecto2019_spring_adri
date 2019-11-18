@@ -17,5 +17,5 @@ public interface ServiceCajero {
 	List<Movimiento> obtenerMovimientos(int idCuenta);
 	double obtenerSaldo(int idCuenta);
 	
-	void altaCuenta(Cuenta cuenta);
+	void altaCuenta(Cuenta cuenta, int dni);
 }

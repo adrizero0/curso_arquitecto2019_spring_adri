@@ -2,6 +2,7 @@ package service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,13 +77,12 @@ public class ServiceCajeroImpl implements ServiceCajero {
 		return cuenta.getSaldo();
 	}
 
+	@Transactional
 	@Override
-	public void altaCuenta(Cuenta cuenta) {
-		if(!daoCuentas.existsById(cuenta.getNumeroCuenta())) {
-			daoCuentas.saveAndFlush(cuenta);
-		}else {
-			throw new RuntimeException();
-		}		
+	public void altaCuenta(Cuenta cuenta, int dni) {
+		Cliente cl=obtenerCliente(dni);
+		cl.getCuentas().add(cuenta);
+		daoCuentas.save(cuenta);
 	}
 
 	@Override
@@ -92,6 +92,7 @@ public class ServiceCajeroImpl implements ServiceCajero {
 
 	@Override
 	public Cliente obtenerCliente(int idCliente) {
-		return daoClientes.getOne(idCliente);
-	}
+		return daoClientes.findById(idCliente).orElse(null);		
+	}	
+
 }

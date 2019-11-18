@@ -32,8 +32,7 @@
 			<option value="">Selecciona cliente</option>
 			<c:forEach var="c" items="${requestScope.clientesLista}">
 				<option value="${c.dni}">${c.nombre}</option>				
-			</c:forEach>
-				
+			</c:forEach>				
 		</select>
 		<button type="submit" class="btn btn-default">Registrar</button>
 		
